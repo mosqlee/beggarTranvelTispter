@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Button from 'material-ui/Button';
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ export default class Home extends Component {
             <div>
                 this is home~<br />
                 记一下数：{this.state.count}<br />
-                <button onClick={() => this._handleClick()}>增</button>
+                <Button onClick={() => this._handleClick()}>增</Button>
             </div>
         )
     }
