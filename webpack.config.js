@@ -17,7 +17,7 @@ const publicConfig = {
                 use: ["css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
             })
         }]
-    }
+    },
     plugins: [
         new CleanWebpackPlugin(['dist/*.*']),
         new UglifyJSPlugin(),
