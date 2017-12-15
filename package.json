@@ -1,7 +1,6 @@
 {
-  "name": "react-family",
+  "name": "beggar",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,7 +28,7 @@
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.9",
     "react-hot-loader": "^3.0.0",
-    "style-loader": "^0.19.0",
+    "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.1.3",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
@@ -38,11 +37,21 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosqlee/beggarTranvelTispter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mosqlee/beggarTranvelTispter/issues"
+  },
+  "homepage": "https://github.com/mosqlee/beggarTranvelTispter#readme",
+  "description": ""
 }
