@@ -5,6 +5,8 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import {BrowserRouter as Router} from 'react-router-dom';
 import App from 'components/App/App';
+import style from './index.css';
+
 if (MOCK) {
     require('mock/mock');
 }
