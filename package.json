@@ -37,11 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-<<<<<<< HEAD
     "material-ui": "^1.0.0-beta.23",
-=======
-    "material-ui": "^0.20.0",
->>>>>>> f267ae8720ae07d0a50df76be77db72d5bf44614
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
