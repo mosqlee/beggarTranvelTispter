@@ -123,17 +123,17 @@ const styles  = theme => ( {
     },
     {
       url: imageTibei,
-      title: '距离天空最近的城市',
+      title: '距离天空最近的城',
       width: '30%',
     },
     {
       url: imageTibei,
-      title: '距离天空最近的城市',
+      title: '距离天空最近的',
       width: '40%',
     },
     {
       url: imageTibei,
-      title: '距离天空最近的城市',
+      title: '距离天空最近',
       width: '30%',
     },
   ];
@@ -185,6 +185,7 @@ const styles  = theme => ( {
             width: image.width,
           }}
         >
+          <span >{image.title}</span>
           <div
             className={classes.imageSrc}
             style={{
