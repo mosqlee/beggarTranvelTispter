@@ -16,55 +16,11 @@ import Button from 'material-ui/Button';
 
 import styles from './HomeStyle';
 //图片
-import imageTibei from './image/tibei.jpg';
-import imageChaka from './image/chaka.jpg';
-import imageXiAn from './image/xian.jpg';
-import imageXiHu from './image/xihu.jpg';
-import imageYangzhou from './image/yangzhou.jpg';
-import imageNanjing from './image/nanjing.jpg';
-import imageLuoyang from './image/luoyang.jpg';
 
-  const images1 = [
-    {
-      url: imageChaka,
-      title: '天空之镜',
-      width: '50%',
-    },
-    {
-      url: imageXiHu,
-      title: '断桥残雪',
-      width: '50%',
-    },
-    {
-      url: imageTibei,
-      title: '距离天空最近的城市',
-      width: '100%',
-    },
-   
-  ];
+import images from './image-s';
 
-  const images2 = [
-    {
-      url: imageXiAn,
-      title: '咸阳古都',
-      width: '33%',
-    },
-    {
-      url: imageLuoyang,
-      title: '归雁洛阳边',
-      width: '34%',
-    },
-    {
-      url: imageNanjing,
-      title: '夜泊秦淮',
-      width: '33%',
-    },
-    {
-      url: imageYangzhou,
-      title: '烟花三月下扬州',
-      width: '100%',
-    },
- ]
+
+
 
   class MenuAppBar extends React.Component {
     state = {
@@ -103,7 +59,7 @@ import imageLuoyang from './image/luoyang.jpg';
         </Paper>
 
           <div className={classes.content}>
-      {images1.map(image => (
+      {images.images1.map(image => (
         <ButtonBase
           focusRipple
           key={image.title}
@@ -140,24 +96,23 @@ import imageLuoyang from './image/luoyang.jpg';
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title}>Word of the Day</Typography>
+          <Typography className={classes.title}>背上行囊</Typography>
           <Typography type="headline" component="h2">
-            be{bull}nev{bull}o{bull}lent
+            义{bull}工{bull}之{bull}旅
           </Typography>
-          <Typography className={classes.pos}>adjective</Typography>
+          <Typography className={classes.pos}>一个人</Typography>
           <Typography component="p">
-            well meaning and kindly.<br />
-            {'"a benevolent smile"'}
+          随心所欲的走走停停。<br />
           </Typography>
         </CardContent>
         <CardActions>
-          <Button dense>Learn More</Button>
+          <Button className={classes.buttonColor} dense>了解更多</Button>
         </CardActions>
       </Card>
     </div>
 
     <div className={classes.content}>
-      {images2.map(image => (
+      {images.images2.map(image => (
         <ButtonBase
           focusRipple
           key={image.title}

@@ -87,8 +87,8 @@ const styles = {
                     open={open}
                     onClose={this.handleClose}
                   >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.handleClose}>个人资料</MenuItem>
+                    <MenuItem onClick={this.handleClose}>退出登陆</MenuItem>
                   </Menu>
                 </div>
               )}

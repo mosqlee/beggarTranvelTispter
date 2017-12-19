@@ -1,4 +1,15 @@
 const styles  = theme => ( {
+  buttonColor: {
+    marginLeft:60,
+    marginTop:120,
+    background: 'linear-gradient(45deg, #6b9ffe 30%, #53efff 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  },
    card: {
     display: 'flex',
     minWidth: 275,
@@ -45,9 +56,6 @@ const styles  = theme => ( {
         },
         '&:hover $imageMarked': {
           opacity: 0,
-        },
-        '&:hover $imageTitle': {
-          border: '4px solid currentColor',
         },
       },
       imageButton: {
