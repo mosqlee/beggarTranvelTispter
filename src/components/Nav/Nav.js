@@ -13,10 +13,9 @@ import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { blue } from 'material-ui/colors';
 
-let obj={} 
 const styles = {
     appBar:{
-        backgroundColor:blue[100],
+        backgroundColor:blue[200],
         marginTop: 2,
     },
     root: {
@@ -105,18 +104,3 @@ const styles = {
   };
   
   export default withStyles(styles)(MenuAppBar);
-
-
-
-// export default class Nav extends Component {
-//     render() {
-//         return (
-//             <ul>
-//                 <li><Link to="/">首页</Link></li>
-//                 <li><Link to="/page1">Page1</Link></li>
-//                 <li><Link to="/counter">Counter</Link></li>
-//                 <li><Link to="/userinfo">UserInfo</Link></li>
-//             </ul>
-//         )
-//     }
-// }
