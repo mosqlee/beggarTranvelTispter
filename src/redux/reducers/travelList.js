@@ -1,8 +1,8 @@
-import { GET_TRAVEL_LIST_REQUEST, GET_TRAVEL_LIST_SUCCESS, GET_TRAVEL_LIST_FAIL } from 'actions/getTravelList';
+import { GET_TRAVEL_LIST_REQUEST, GET_TRAVEL_LIST_SUCCESS, GET_TRAVEL_LIST_FAIL } from 'actions/travelList';
 
 const initState = {
     isLoading: false,
-    travelList: [],
+    travelList: {travelList:[]},
     errorMsg: ''
 };
 
@@ -12,7 +12,7 @@ export default function reducer(state = initState, action) {
             return {
                 ...state,
                 isLoading: true,
-                travelList: [],
+                travelList: { travelList: [] },
                 errorMsg: ''
             };
         case GET_TRAVEL_LIST_SUCCESS:
@@ -26,7 +26,7 @@ export default function reducer(state = initState, action) {
             return {
                 ...state,
                 isLoading: false,
-                travelList: [],
+                travelList: { travelList: [] },
                 errorMsg: '请求错误'
             };
         default:

@@ -25,6 +25,7 @@ const devConfig = {
     devServer: {
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
+        port: 8081,
         host: '0.0.0.0',
     },
     plugins: [

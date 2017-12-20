@@ -1,52 +1,68 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import style from './TravelList.css';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import { getTravelList } from "actions/getTravelList";
-
-class TravelList extends Component {
+import { getTravelList } from "actions/travelList";
+//  import classes from './TravelList';
+const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 700,
+    },
+});
+class TravelLists extends Component {
+    componentDidMount() {
+        this.props.getTravelList();
+    }
     render() {
-        const { travelList,isLoading, errorMsg } = this.props.getTravelList;
+        const { travelList,isLoading, errorMsg } = this.props.travelList;
         return (
             <div>
                 {
                     isLoading ? 'loading':
                         (
-                            <Paper className={classes.root}>
-                                <Table className={classes.table}>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Dessert (100g serving)</TableCell>
-                                            <TableCell numeric>Calories</TableCell>
-                                            <TableCell numeric>Fat (g)</TableCell>
-                                            <TableCell numeric>Carbs (g)</TableCell>
-                                            <TableCell numeric>Protein (g)</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {data.map(n => {
-                                            return (
-                                                <TableRow key={n.id}>
-                                                    <TableCell>{n.name}</TableCell>
-                                                    <TableCell numeric>{n.calories}</TableCell>
-                                                    <TableCell numeric>{n.fat}</TableCell>
-                                                    <TableCell numeric>{n.carbs}</TableCell>
-                                                    <TableCell numeric>{n.protein}</TableCell>
+                            errorMsg ? errorMsg :
+                                    (
+                                    <Paper className={this.props.classes.root}>
+                                        <Table className={this.props.classes.table}>
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>标题</TableCell>
+                                                    <TableCell numeric>图片</TableCell>
+                                                    <TableCell numeric>简介</TableCell>
+                                                    <TableCell numeric>日期</TableCell>
+                                                    <TableCell numeric>地点</TableCell>
                                                 </TableRow>
+                                            </TableHead>
+                                        <TableBody>
+                                        {travelList.travelList.map(n => {
+                                            return (
+                                            <TableRow key={n.id}>
+                                                <TableCell>{n.title}</TableCell>
+                                                <TableCell numeric><img src={n.img} /></TableCell>
+                                                <TableCell numeric>{n.intro}</TableCell>
+                                                <TableCell numeric>{n.date}</TableCell>
+                                                <TableCell numeric>{n.location}</TableCell>
+                                            </TableRow>
                                             );
                                         })}
-                                    </TableBody>
-                                </Table>
-                            </Paper>
+                                        </TableBody>
+                                        </Table>
+                                     </Paper>
+                                    )
                         )
                 }
-                <button onClick={() => this.props.getTravelList()}>请求用户信息</button>
             </div>
 
         )
     }
 }
-export default connect((state) => ({ travelList: state.userInfo }), { getUserInfo })(UserInfo);
+const TravelList = withStyles(styles)(TravelLists);
+export default connect((state) => ({ travelList: state.travelList }), { getTravelList })(TravelList);

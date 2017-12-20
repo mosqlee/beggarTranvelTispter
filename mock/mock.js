@@ -6,3 +6,16 @@ Mock.mock('/api/user', {
     'name': '@cname',
     'intro': '@word(20)'
 });
+Mock.mock('/api/travel', {
+    'travelList|1-10':[
+        {
+            'title': '@ctitle(10,20)',
+            'intro': '@cword(20)',
+            'id|+1': 1,
+            'img': "@image(100)",
+            'date': '@date(yyyy-MM-dd)',
+            'location':'@region'
+        }
+    ],
+
+});
