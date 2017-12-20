@@ -13,8 +13,9 @@ class UserInfo extends Component {
                         (
                             errorMsg ? errorMsg :
                                 <div>
-                                    <p>userInfo：</p>
+                                    <p>userInfo  is </p>
                                     <p>usename：{userInfo.name}</p>
+                                    <p>usename：{userInfo.imageSrc}</p>
                                     <p>介绍：{userInfo.intro}</p>
                                 </div>
                         )
@@ -25,4 +26,4 @@ class UserInfo extends Component {
     }
 }
 
-export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
+export default connect((state ) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);

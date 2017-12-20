@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getUserInfo } from "../../redux/actions/userInfo";
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+//ui库
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -11,24 +15,8 @@ import AccountCircle from 'material-ui-icons/AccountCircle';
 import Switch from 'material-ui/Switch';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Menu, { MenuItem } from 'material-ui/Menu';
-import { blue } from 'material-ui/colors';
+import styles from './NavStyle'; 
 
-const styles = {
-    appBar:{
-        backgroundColor:blue[200],
-        marginTop: 2,
-    },
-    root: {
-      width: '100%',
-    },
-    flex: {
-      flex: 1,
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20,
-    },
-  };
   
   class MenuAppBar extends React.Component {
     state = {
@@ -52,6 +40,7 @@ const styles = {
       const { classes } = this.props;
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
+      const { userInfo, isLoading, errorMsg } = this.props.userInfo;
   
       return (
         <div className={classes.root}>
@@ -61,7 +50,7 @@ const styles = {
                 <MenuIcon />
               </IconButton>
               <Typography type="title" color="inherit" className={classes.flex}>
-                Title
+              beggarTranvelTispter
               </Typography>
               {auth && (
                 <div>
@@ -71,7 +60,7 @@ const styles = {
                     onClick={this.handleMenu}
                     color="contrast"
                   >
-                    <AccountCircle />
+                    <img className={classes.image} src={userInfo.imageSrc}/>
                   </IconButton>
                   <Menu
                     id="menu-appbar"
@@ -94,6 +83,7 @@ const styles = {
               )}
             </Toolbar>
           </AppBar>
+          <button onClick={() => this.props.getUserInfo()}>请求用户信息</button>
         </div>
       );
     }
@@ -103,4 +93,6 @@ const styles = {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(MenuAppBar);
+let MenuAppBarClass = withStyles(styles)(MenuAppBar);
+
+  export default connect((state ) => ({ userInfo: state.userInfo }), { getUserInfo })(MenuAppBarClass);

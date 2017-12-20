@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 //样式插件
@@ -14,9 +15,8 @@ import ButtonBase from 'material-ui/ButtonBase';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 
-import styles from './HomeStyle';
 //图片
-
+import styles from './HomeStyle';
 import images from './image-s';
 
 
