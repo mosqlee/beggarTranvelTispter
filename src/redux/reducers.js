@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import counter from './reducers/counter';
 import userInfo from './reducers/userInfo';
+import getTravelList from './reducers/getTravelList';
 export default combineReducers({
     counter,
-    userInfo
+    userInfo,
+    getTravelList
 })
 // export default function combineReducers(state = {}, action) {
 //     return {
