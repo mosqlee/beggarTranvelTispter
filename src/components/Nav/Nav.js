@@ -17,7 +17,8 @@ import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import styles from './NavStyle'; 
 
-  
+  let a = getUserInfo();
+  console.log(a)
   class MenuAppBar extends React.Component {
     state = {
       auth: true,
@@ -41,7 +42,6 @@ import styles from './NavStyle';
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
       const { userInfo, isLoading, errorMsg } = this.props.userInfo;
-  
       return (
         <div className={classes.root}>
           <AppBar position="static" className={classes.appBar}>
@@ -83,7 +83,7 @@ import styles from './NavStyle';
               )}
             </Toolbar>
           </AppBar>
-          <button onClick={() => this.props.getUserInfo()}>请求用户信息</button>
+          {/* <button onClick={() => this.props.getUserInfo()}>请求用户信息</button> */}
         </div>
       );
     }

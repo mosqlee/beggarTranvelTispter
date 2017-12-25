@@ -4,9 +4,9 @@ let Random = Mock.Random;
 
 Mock.mock(
     '/api/user', {
-        'name': '@cname',
-    'intro': '@image(20)'
-
+    'name': '@cname',
+    'intro': '@image(20)',
+    'imageSrc': "@image(100)"
 });
 Mock.mock('/api/travel', {
     'travelList|1-10':[

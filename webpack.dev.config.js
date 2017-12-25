@@ -20,7 +20,15 @@ const devConfig = {
         rules: [{
             test: /\.css$/,
             use: ["style-loader", "css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
-        }]
+        },
+        {
+            test: /\.scss$/,
+            loader:'style!css!sass'
+        },
+        {
+            test: /\.json$/,
+            use: 'json-loader'
+      }]
     },
     devServer: {
         contentBase: path.join(__dirname, './dist'),

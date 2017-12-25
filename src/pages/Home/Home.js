@@ -14,13 +14,26 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import ButtonBase from 'material-ui/ButtonBase';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import _ from 'lodash';
+import styleSCSS from './Home.css';
 
 //图片
+import imageData from '../../data/imageData.json';
 import styles from './HomeStyle';
 import images from './image-s';
 
-
-
+//利用自执行函数，将图片名信息转成图片URL路径信息
+let imageDatas = _.cloneDeep(imageData);
+imageDatas = (function genImageUrl(imageDatasArr){
+    for(let i = 0 ,j = imageDatasArr.length ; i < j ; i++){
+      let singleImageData = imageDatasArr[i];
+      singleImageData.imageUrl = import('../../images/'+singleImageData.fileName);
+  
+      imageDatasArr[i] = singleImageData;
+    }
+    return imageDatasArr;
+  }
+)(imageDatas)
 
   class MenuAppBar extends React.Component {
     state = {
@@ -48,6 +61,14 @@ import images from './image-s';
 
       return (
         <div className={classes.root}>
+        <section className = "stage">
+        <section className = "img-sec">
+        </section>
+        <nav className = "controller-nav">
+        </nav>
+        </section>
+
+
 
         <Paper className={classes.paperContent} elevation={9}>
         <Typography type="headline" component="h3">

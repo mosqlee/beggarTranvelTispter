@@ -16,7 +16,15 @@ const publicConfig = {
                 fallback: "style-loader",
                 use: ["css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
             })
-        }]
+        },
+		{
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract("style", 'css!sass') 
+        },
+        {
+                test: /\.json$/,
+                use: 'json-loader'
+          }]
     },
     plugins: [
         new CleanWebpackPlugin(['dist/*.*']),
