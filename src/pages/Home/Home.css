@@ -1,19 +1,19 @@
 .stage {
   position: relative;
-  widows: 100%;
+  width: 100%;
   height: 680px;
   background-color: #222;
 }
 
 .img-sec {
-  postion: relative;
-  widows: 100%;
+  position: relative;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: #dddddd;
 }
 
-.controller-nav {
+.controller {
   position: absolute;
   left: 0;
   bottom: 30px;

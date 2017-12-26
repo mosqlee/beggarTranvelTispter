@@ -1,1 +1,1 @@
-.stage{position:relative;widows:100%;height:680px;background-color:#222}.img-sec{postion:relative;widows:100%;height:100%;overflow:hidden;background-color:#dddddd}.controller-nav{position:absolute;left:0;bottom:30px;z-index:101;width:100%;text-align:center}
+.stage{position:relative;width:100%;height:680px;background-color:#222}.img-sec{position:relative;width:100%;height:100%;overflow:hidden;background-color:#dddddd}.controller{position:absolute;left:0;bottom:30px;z-index:101;width:100%;text-align:center}

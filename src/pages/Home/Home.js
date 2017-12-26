@@ -61,10 +61,11 @@ imageDatas = (function genImageUrl(imageDatasArr){
 
       return (
         <div className={classes.root}>
-        <section className = "stage">
-        <section className = "img-sec">
+        <section className = {styleSCSS.stage}>
+        <section className = {styleSCSS.img}>
         </section>
-        <nav className = "controller-nav">
+        <nav className = {styleSCSS.controller}>
+          
         </nav>
         </section>
 

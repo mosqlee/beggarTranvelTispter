@@ -23,7 +23,7 @@ const devConfig = {
         },
         {
             test: /\.scss$/,
-            loader:'style!css!sass'
+            loader:'style-loader!style-loader!sass-loader?outputStyle=expanded!autoprefixer-loader?{browsers:["last 2 version"]}'
         },
         {
             test: /\.json$/,
