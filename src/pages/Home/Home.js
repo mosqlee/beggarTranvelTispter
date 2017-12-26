@@ -15,25 +15,39 @@ import ButtonBase from 'material-ui/ButtonBase';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import _ from 'lodash';
-import styleSCSS from './Home.css';
 
 //图片
-import imageData from '../../data/imageData.json';
 import styles from './HomeStyle';
 import images from './image-s';
+
+//画廊效果
+import styleSCSS from './Home.css';
+import imageData from '../../data/imageData.json';
 
 //利用自执行函数，将图片名信息转成图片URL路径信息
 let imageDatas = _.cloneDeep(imageData);
 imageDatas = (function genImageUrl(imageDatasArr){
     for(let i = 0 ,j = imageDatasArr.length ; i < j ; i++){
       let singleImageData = imageDatasArr[i];
-      singleImageData.imageUrl = import('../../images/'+singleImageData.fileName);
-  
+      singleImageData.imageUrl = require('./image/'+singleImageData.fileName);
       imageDatasArr[i] = singleImageData;
     }
     return imageDatasArr;
   }
 )(imageDatas)
+
+let ImgFigure = React.createClass({
+  render:function(){
+    return(
+      <figure className={styleSCSS.ImgFigure}>
+        <img src={this.props.data.imageUrl} alt={this.props.data.title}/>
+        <figcaption>
+          <h2 className={styleSCSS.ImgTitle}>{this.props.data.title}</h2>
+        </figcaption>
+      </figure>
+    )
+  }
+})
 
   class MenuAppBar extends React.Component {
     state = {
@@ -58,14 +72,20 @@ imageDatas = (function genImageUrl(imageDatasArr){
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
       const bull = <span className={classes.bullet}>•</span>;
+      let controllerUnits = [],
+          imgFigures = [];
+          imageDatas.forEach(function(value) {
+            imgFigures.push(<ImgFigure data={value} />);
+          });
 
       return (
         <div className={classes.root}>
         <section className = {styleSCSS.stage}>
         <section className = {styleSCSS.img}>
+        {imgFigures}
         </section>
-        <nav className = {styleSCSS.controller}>
-          
+        <nav className = {styleSCSS.controllerNav}>
+        {controllerUnits}
         </nav>
         </section>
 
