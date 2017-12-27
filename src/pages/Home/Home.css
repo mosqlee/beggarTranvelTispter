@@ -19,6 +19,7 @@ img {
 }
 
 .ImgFigure {
+  position: absolute;
   height: 360px;
   width: 320px;
   margin: 0;

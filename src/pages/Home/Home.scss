@@ -16,6 +16,7 @@ img{
     background-color: #dddddd;
     @at-root{
         .ImgFigure{
+            position: absolute;
             height: 360px;
             width:320px;
             margin: 0;
