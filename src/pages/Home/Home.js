@@ -182,8 +182,8 @@ let GalleryByReactApp = React.createClass({
     //计算上侧区域图片排布位置的取值范围 
     this.Constant.vPosRange.topY[0] = -halfImgH;
     this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
-    this.Constant.vPosRange.x[0] = halfImgW - imgW;
-    this.Constant.vPosRange.x[1] = halfImgW;
+    this.Constant.vPosRange.x[0] = halfStageW - imgW;
+    this.Constant.vPosRange.x[1] = halfStageW;
 
     this.rearrange(0);
 
