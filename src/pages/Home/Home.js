@@ -46,6 +46,16 @@ function get30DegRandom(){
 }
 
 let ImgFigure = React.createClass({
+  //点击转动图片
+  handleClick:function(e){
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center();
+    }
+    e.stopPropagation();
+    e.preventDefault();
+  },
   render:function(){
     let styleObj = {};
     //如果props属性中指定了这张图片的位置，则使用
@@ -59,11 +69,25 @@ let ImgFigure = React.createClass({
       }.bind(this))
       
     }
+
+    if(this.props.arrange.isCenter){
+      styleObj.zIndex = 11;
+    }
+
+    let ImgFigureClassName = "imgFigure-3f49a";
+        ImgFigureClassName += this.props.arrange.isInverse?' isInverse-YKqA3':'';
+    let imgBeforeFigureClassName = "imgBefore-2RrHW";
+      imgBeforeFigureClassName = this.props.arrange.isInverse?'imgBack-37yg4':'imgBefore-2RrHW';   
     return(
-      <figure className={styleSCSS.ImgFigure} style={styleObj}>
-        <img src={this.props.data.imageUrl} alt={this.props.data.title}/>
+      <figure className={ImgFigureClassName} style={styleObj} onClick={this.handleClick}>
+        <img src={this.props.data.imageUrl}  alt={this.props.data.title}/>
         <figcaption>
           <h2 className={styleSCSS.ImgTitle}>{this.props.data.title}</h2>
+          <div className={imgBeforeFigureClassName} onClick={this.handleClick}>
+            <p>
+              {this.props.data.desc}
+            </p>
+          </div>
         </figcaption>
       </figure>
     )
@@ -89,6 +113,17 @@ let GalleryByReactApp = React.createClass({
     },
   },
 
+  //翻转图片
+  inverse : function(index){
+    return function(){
+      let imgsArrangeArr = this.state.imgsArrangeArr;
+      imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;
+
+      this.setState({
+        imgsArrangeArr: imgsArrangeArr
+      });
+    }.bind(this)
+  },
   /**
    * 重新布局所有图片
    * 
@@ -111,7 +146,11 @@ let GalleryByReactApp = React.createClass({
     imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex,1);
 
     //首先居中centerIndex的图片
-    imgsArrangeCenterArr[0].pos = centerPos;
+    imgsArrangeCenterArr[0]={
+      pos: centerPos,
+      isCenter: true,
+      rotate:0
+    };
     //居中的图片不需要旋转
     imgsArrangeCenterArr[0].rotate = 0;
     //取出要布局上侧的图片的状态信息
@@ -125,7 +164,8 @@ let GalleryByReactApp = React.createClass({
           top:getRangeRandom( vPosRangeTopY[0],vPosRangeTopY[1]),
           left:getRangeRandom( vPosRangeX[0],vPosRangeX[1])
         },
-        rotate:get30DegRandom()
+        rotate:get30DegRandom(),
+        isCenter: false
       };
       
       
@@ -146,7 +186,9 @@ let GalleryByReactApp = React.createClass({
           top:getRangeRandom(hPosRangeY[0],hPosRangeY[1]),
           left:getRangeRandom(hPosRangeLORX[0],hPosRangeLORX[1])
         },
-        rotate:get30DegRandom()
+        rotate:get30DegRandom(),
+        isCenter: false
+
     };
   }
     if(imgsArrangeTopArr && imgsArrangeTopArr[0]){
@@ -158,6 +200,13 @@ let GalleryByReactApp = React.createClass({
       imgsArrangeArr:imgsArrangeArr
     });
   },
+
+  //利用rearrange居中对应index
+  center:function(index){
+    return function(){
+      this.rearrange(index);
+    }.bind(this);
+  },
   getInitialState : function(){
     return{
       imgsArrangeArr : [
@@ -166,8 +215,10 @@ let GalleryByReactApp = React.createClass({
         //     left:'0',
         //     top:'0'
         //   },
-        // rotate:0    旋转角度
-        // }
+        // rotate:0，    旋转角度
+        // isInverse:false, 图片正反面
+        // isCenter:false, 是否居中
+      // }
       ]
     };
   },
@@ -221,10 +272,14 @@ let GalleryByReactApp = React.createClass({
             left:0,
             top:0
           },
-          rotate:0
+          rotate:0,
+          isInverse:false ,
+          isCenter:false 
         }
       }
-      imgFigures.push(<ImgFigure data={value} ref={'imgFigure'+index} key={index} arrange={this.state.imgsArrangeArr[index]}/>);
+      imgFigures.push(<ImgFigure data={value} ref={'imgFigure'+index} 
+      key={index} arrange={this.state.imgsArrangeArr[index]}
+      inverse={this.inverse(index)}  center={this.center(index)}/>);
     }.bind(this));
     return(
       <section className = {styleSCSS.stage} ref="stage">
@@ -268,11 +323,8 @@ let GalleryByReactApp = React.createClass({
 
       return (
         <div className={classes.root}>
-       <GalleryByReactApp />
 
-
-
-        <Paper className={classes.paperContent} elevation={9}>
+<Paper className={[classes.paperContent,styleSCSS.papaerBoxShadow]} elevation={9} id="HomeTile">
         <Typography type="headline" component="h3">
           义工の行
         </Typography>
@@ -280,6 +332,13 @@ let GalleryByReactApp = React.createClass({
         一本书、一句话、一个人，出发的理由永远不嫌少，曾经遇见的人，现在的你是否还记得
         </Typography>
         </Paper>
+
+
+       <GalleryByReactApp />
+
+
+
+    
 
           <div className={classes.content}>
       {images.images1.map(image => (
@@ -319,7 +378,7 @@ let GalleryByReactApp = React.createClass({
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title}>背上行囊</Typography>
+          <Typography className={classes.title} >背上行囊</Typography>
           <Typography type="headline" component="h2">
             义{bull}工{bull}之{bull}旅
           </Typography>

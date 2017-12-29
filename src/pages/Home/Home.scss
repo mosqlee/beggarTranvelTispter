@@ -14,8 +14,10 @@ img{
     height: 100%;
     overflow: hidden;
     background-color: #dddddd;
+    perspective: 1800px;
+    -webkit-perspective: 1800px;
     @at-root{
-        .ImgFigure{
+        .imgFigure{
             position: absolute;
             height: 360px;
             width:320px;
@@ -24,6 +26,15 @@ img{
 
             background-color: #ffffff;
             box-sizing: border-box;
+
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform-origin:0 50% 0; 
+            transition:transform .6s ease-in-out, left .6s ease-in-out,top .6s ease-in-out;
+            .is-inverse{
+                transform: translate(320px) rotateY(180deg);
+                -webkit-transform: translate(320px) rotateY(180deg);
+            }
         }
     }
     figcaption{
@@ -48,6 +59,26 @@ img{
 .test-rotate{
     transform: rotate(30deg);
 }
+.imgBack{
+    position: absolute; /* 相对于img-sec进行定位 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 50px 40px;
+    overflow: auto;
+    color: #666;
+    background: #fff;
 
-
-
+    transform: rotateY(180deg) translateZ(1px);
+}
+.imgBefore{
+    display: none;
+}
+.isInverse {
+    transform: rotateY(180deg); /* 翻转180度 */
+}
+.papaerBoxShadow{
+    box-shadow: 0 -15px 25px #ddd inset;
+}
