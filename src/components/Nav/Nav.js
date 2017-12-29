@@ -83,7 +83,6 @@ import styles from './NavStyle';
               )}
             </Toolbar>
           </AppBar>
-          {/* <button onClick={() => this.props.getUserInfo()}>请求用户信息</button> */}
         </div>
       );
     }

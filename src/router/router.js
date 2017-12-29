@@ -11,6 +11,8 @@ import Counter from 'bundle-loader?lazy&name=counter!pages/Counter/Counter';
 import UserInfo from 'bundle-loader?lazy&name=userInfo!pages/UserInfo/UserInfo';
 import NotFound from 'bundle-loader?lazy&name=notFound!pages/NotFound/NotFound';
 import TravelList from 'bundle-loader?lazy&name=travelList!pages/TravelList/TravelList';
+import MainList from 'bundle-loader?lazy&name=travelList!pages/List/List';
+
 const createComponent = (component) => () => (
     <Bundle load={component}>
         {
@@ -25,6 +27,7 @@ export default () => (
             <Route exact path="/" component={createComponent(Home)} />
             <Route path="/userinfo" component={createComponent(UserInfo)} />
             <Route path="/travelList" component={createComponent(TravelList)} />
+            <Route path="/MainList" component={createComponent(MainList)} />
             <Route component={createComponent(NotFound)} />
         </Switch>
     </div>

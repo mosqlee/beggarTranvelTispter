@@ -35,7 +35,7 @@ img {
   transition: transform .6s ease-in-out, left .6s ease-in-out,top .6s ease-in-out;
 }
 
-.imgFigure .is-inverse {
+.imgFigure .isInverse {
   transform: translate(320px) rotateY(180deg);
   -webkit-transform: translate(320px) rotateY(180deg);
 }
@@ -84,7 +84,6 @@ img {
 
 .isInverse {
   transform: translate(320px) rotateY(180deg);
-  -webkit-transform: translate(320px) rotateY(180deg);
   /* 翻转180度 */
 }
 
