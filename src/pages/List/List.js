@@ -46,6 +46,10 @@ function get30DegRandom(){
 
 
 class ImgFigure extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this)
+  }
   //点击转动图片
    handleClick = function(e){
     if(this.props.arrange.isCenter){
@@ -94,25 +98,15 @@ class ImgFigure extends React.Component{
   };
 }
 
-// let ControllerUnit = React.createClass({
-//   handleClick:function(e){
-//     e.preventDefault();
-//     e.stopPropagation();
-//   },
-//   render: function(){
-//     return(
-//       <span className="controllerUnit" onClick={this.handleClick}></span>
-//     );
-//   }
-// })
 
 class GalleryByReactApp extends React.Component  {
-    constructor () {
-      super() ;
+    constructor (props) {
+      super(props) ;
+      this.render = this.render.bind(this);
+      this.inverse = this.inverse.bind(this);
+      this.rearrange = this.rearrange.bind(this);
+      this.state = {imgsArrangeArr:[]};
     }   
-
-
-
 
     Constant = {
       centerPos:{
