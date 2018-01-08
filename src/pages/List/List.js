@@ -64,7 +64,9 @@ class ImgFigure extends React.Component{
     let styleObj = {};
     //如果props属性中指定了这张图片的位置，则使用
     if(this.props.arrange.pos){
-      styleObj = this.props.arrange.pos;
+      styleObj.left = this.props.arrange.pos.left;
+      styleObj.top = this.props.arrange.pos.top;
+      styleObj.zIndex = this.props.arrange.pos.zIndex;
     }
     //如果图片的旋转角度有值并且不为零，添加旋转角度
     if(this.props.arrange.rotate){
@@ -103,9 +105,6 @@ class ImgFigure extends React.Component{
 class GalleryByReactApp extends React.Component  {
     constructor (props) {
       super(props) ;
-      this.render = this.render.bind(this);
-      this.inverse = this.inverse.bind(this);
-      this.rearrange = this.rearrange.bind(this);
       this.state = {imgsArrangeArr:[]};
     }   
 
