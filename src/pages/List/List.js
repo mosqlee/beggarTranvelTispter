@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
-//画廊部分
-import PictureContent from './listPicture';
-
 //样式插件
 import { withStyles } from 'material-ui/styles';
 import ExpansionPanel, {
@@ -16,12 +12,17 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 //样式部分
 import styles from './listStyle';
+//画廊部分
+import PictureContent from './listPicture';
+//搜索部分
+import SearchContent from './listSearch';
 
 function SimpleExpansionPanel(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
       <PictureContent />
+      <SearchContent />
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>Expansion Panel 1</Typography>
