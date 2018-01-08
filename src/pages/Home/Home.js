@@ -112,7 +112,6 @@ import images from './image-s';
         </CardContent>
         <CardActions>
         <Link to="/MainList " className={classes.buttonColor}>了解更多</Link>
-          {/* <Link className={classes.buttonColor} >了解更多</Link > */}
         </CardActions>
       </Card>
     </div>
