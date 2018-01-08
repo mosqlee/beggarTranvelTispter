@@ -68,14 +68,15 @@ class ImgFigure extends React.Component{
     }
     //如果图片的旋转角度有值并且不为零，添加旋转角度
     if(this.props.arrange.rotate){
-      ['-moz-','-ms-','-webkit',''].forEach(function(value){
-        styleObj[value+'transform'] = 'rotate('+this.props.arrange.rotate + 'deg)';
+      ['Moz','ms','Webkit',''].forEach(function(value){
+        styleObj[value+'Transform'] = 'rotate('+this.props.arrange.rotate + 'deg)';
       }.bind(this))
       
     }
 
     if(this.props.arrange.isCenter){
       styleObj.zIndex = 11;
+      console.log(styleObj);
     }
 
     let ImgFigureClassName = styleSCSS.imgFigure;
