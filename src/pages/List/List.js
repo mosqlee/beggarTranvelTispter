@@ -1,42 +1,60 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+
 
 //画廊部分
 import PictureContent from './listPicture';
 
 //样式插件
 import { withStyles } from 'material-ui/styles';
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+} from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
-import MenuIcon from 'material-ui-icons/Menu';
-import AccountCircle from 'material-ui-icons/AccountCircle';
-import Switch from 'material-ui/Switch';
-import Paper from 'material-ui/Paper';
-import { FormControlLabel, FormGroup } from 'material-ui/Form';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import ButtonBase from 'material-ui/ButtonBase';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
+import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
+//样式部分
+import styles from './listStyle';
 
-  class MenuAppBar extends React.Component {
-    
-     
-      
-        render() {
+function SimpleExpansionPanel(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <PictureContent />
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>Expansion Panel 2</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel disabled>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
+        </ExpansionPanelSummary>
+      </ExpansionPanel>
+    </div>
+  );
+}
 
-    
-    
-          return (
-            <div>
-               <PictureContent />
-            </div>
-          );
-        }
-      }
-      
-      MenuAppBar.propTypes = {
-        classes: PropTypes.object.isRequired,
-      };
-      
-      export default withStyles()(MenuAppBar);
+SimpleExpansionPanel.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SimpleExpansionPanel);
