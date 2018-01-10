@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 //样式插件
 import { withStyles } from 'material-ui/styles';
+import Paper from 'material-ui/Paper';
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -22,6 +23,11 @@ function SimpleExpansionPanel(props) {
   return (
     <div className={classes.root}>
       <PictureContent />
+      <Paper className={classes.paper} elevation={4}>
+        <Typography type="headline" component="h3"  >
+          义工信息列表
+        </Typography>
+      </Paper>
       <SearchContent />
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
