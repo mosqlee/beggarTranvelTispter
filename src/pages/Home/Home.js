@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 //样式插件
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -29,7 +30,6 @@ import images from './image-s';
       auth: true,
       anchorEl: null,
     };
-  
     handleChange = (event, checked) => {
       this.setState({ auth: checked });
     };
@@ -111,7 +111,7 @@ import images from './image-s';
           </Typography>
         </CardContent>
         <CardActions>
-          <Button className={classes.buttonColor} >了解更多</Button>
+        <Link to="/MainList" className={classes.buttonColor} >了解更多</Link>
         </CardActions>
       </Card>
     </div>

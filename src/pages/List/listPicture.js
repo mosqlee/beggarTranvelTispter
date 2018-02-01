@@ -1,67 +1,57 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+
+//画廊部分
+import _ from 'lodash';
+import styleSCSS from './List.css';
+import imageData from '../../data/imageData.json';
 
 //样式插件
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import MenuIcon from 'material-ui-icons/Menu';
+import AccountCircle from 'material-ui-icons/AccountCircle';
+import Switch from 'material-ui/Switch';
+import Paper from 'material-ui/Paper';
+import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import ButtonBase from 'material-ui/ButtonBase';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Button from 'material-ui/Button';
 
-//样式部分
-import styles from './listStyle';
-//画廊部分
-import PictureContent from './listPicture';
-//搜索部分
-import SearchContent from './listSearch';
 
-function SimpleExpansionPanel(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <PictureContent />
-      <Paper className={classes.paper} elevation={4}>
-        <Typography type="headline" component="h3"  >
-          义工信息列表
-        </Typography>
-      </Paper>
-      <SearchContent />
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Expansion Panel 2</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel disabled>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
-        </ExpansionPanelSummary>
-      </ExpansionPanel>
-    </div>
-  );
+
+//利用自执行函数，将图片名信息转成图片URL路径信息
+let imageDatas = _.cloneDeep(imageData);
+imageDatas = (function genImageUrl(imageDatasArr){
+    for(let i = 0 ,j = imageDatasArr.length ; i < j ; i++){
+      let singleImageData = imageDatasArr[i];
+      singleImageData.imageUrl = require('./image/'+singleImageData.fileName);
+      imageDatasArr[i] = singleImageData;
+    }
+    return imageDatasArr;
+  }
+)(imageDatas)
+//获取区间内的一个随机值
+function getRangeRandom(low,high){
+  return Math.ceil(Math.random() * (high - low) + low);
 }
-class ImgFigure extends Component{
+
+//获取0-30之间的任意正负值
+function get30DegRandom(){
+  return ((Math.random()>0.5?'':'-') + Math.ceil(Math.random() * 30));
+}
+
+
+
+class ImgFigure extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this)
+  }
   //点击转动图片
-  handleClick(e){
+   handleClick = function(e){
     if(this.props.arrange.isCenter){
       this.props.inverse();
     }else{
@@ -70,16 +60,18 @@ class ImgFigure extends Component{
     e.stopPropagation();
     e.preventDefault();
   };
-  render(){
+  render = function(){
     let styleObj = {};
     //如果props属性中指定了这张图片的位置，则使用
     if(this.props.arrange.pos){
-      styleObj = this.props.arrange.pos;
+      styleObj.left = this.props.arrange.pos.left;
+      styleObj.top = this.props.arrange.pos.top;
+      styleObj.zIndex = this.props.arrange.pos.zIndex;
     }
     //如果图片的旋转角度有值并且不为零，添加旋转角度
     if(this.props.arrange.rotate){
-      ['-moz-','-ms-','-webkit',''].forEach(function(value){
-        styleObj[value+'transform'] = 'rotate('+this.props.arrange.rotate + 'deg)';
+      ['Moz','ms','Webkit',''].forEach(function(value){
+        styleObj[value+'Transform'] = 'rotate('+this.props.arrange.rotate + 'deg)';
       }.bind(this))
       
     }
@@ -105,23 +97,17 @@ class ImgFigure extends Component{
         </figcaption>
       </figure>
     )
-  }
+  };
 }
 
-// let ControllerUnit = React.createClass({
-//   handleClick:function(e){
-//     e.preventDefault();
-//     e.stopPropagation();
-//   },
-//   render: function(){
-//     return(
-//       <span className="controllerUnit" onClick={this.handleClick}></span>
-//     );
-//   }
-// })
 
-class GalleryByReactApp extends Component{
-    Constant={
+class GalleryByReactApp extends React.Component  {
+    constructor (props) {
+      super(props) ;
+      this.state = {imgsArrangeArr:[]};
+    }   
+
+    Constant = {
       centerPos:{
         left:0,
         right:0
@@ -138,7 +124,7 @@ class GalleryByReactApp extends Component{
     };
   
     //翻转图片
-    inverse(index){
+    inverse = function(index){
       return function(){
         let imgsArrangeArr = this.state.imgsArrangeArr;
         imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;
@@ -152,7 +138,7 @@ class GalleryByReactApp extends Component{
      * 重新布局所有图片
      * 
      */
-    rearrange(centerIndex){
+    rearrange = function(centerIndex){
       let imgsArrangeArr = this.state.imgsArrangeArr,
       Constant = this.Constant,
       centerPos = Constant.centerPos,
@@ -226,12 +212,12 @@ class GalleryByReactApp extends Component{
     };
   
     //利用rearrange居中对应index
-    center(index){
+    center = function(index){
       return function(){
         this.rearrange(index);
       }.bind(this);
     };
-    getInitialState(){
+    getInitialState = function(){
       return{
         imgsArrangeArr : [
           // {
@@ -248,7 +234,7 @@ class GalleryByReactApp extends Component{
     };
   
     //组件加载以后，为每张图片计算其位置的范围
-    componentDidMount(){
+    componentDidMount = function(){
       //首先拿到舞台的大小
       let stageDOM = ReactDOM.findDOMNode(this.refs.stage),
       stageW = stageDOM.scrollWidth,
@@ -286,7 +272,7 @@ class GalleryByReactApp extends Component{
       this.rearrange(0);
   
     };
-    render(){
+    render = function(){
       let controllerUnits = [],
       imgFigures = [];
       imageDatas.forEach(function(value,index) {
@@ -316,13 +302,13 @@ class GalleryByReactApp extends Component{
           </nav>
           </section>
       )
-    }
-  };
+    };
+  }
 
 
 
   
-  class MenuAppBar extends Component {
+  class MenuAppBar extends React.Component {
     
        
         state = {

@@ -3,9 +3,15 @@ import { blue } from 'material-ui/colors';
 
 
 const styles = {
+    list: {
+      width: 250,
+    },
+    listFull: {
+      width: 'auto',
+    },
     appBar:{
-        backgroundColor:blue[200],
-        marginTop: 2,
+      backgroundColor:blue[200],
+      marginTop: 2,
     },
     root: {
       width: '100%',
