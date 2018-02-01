@@ -42,10 +42,9 @@ function getRangeRandom(low,high){
 function get30DegRandom(){
   return ((Math.random()>0.5?'':'-') + Math.ceil(Math.random() * 30));
 }
-
-let ImgFigure = React.createClass({
+class ImgFigure extends Component{
   //点击转动图片
-  handleClick:function(e){
+  handleClick(e){
     if(this.props.arrange.isCenter){
       this.props.inverse();
     }else{
@@ -53,8 +52,8 @@ let ImgFigure = React.createClass({
     }
     e.stopPropagation();
     e.preventDefault();
-  },
-  render:function(){
+  };
+  render(){
     let styleObj = {};
     //如果props属性中指定了这张图片的位置，则使用
     if(this.props.arrange.pos){
@@ -90,7 +89,7 @@ let ImgFigure = React.createClass({
       </figure>
     )
   }
-})
+}
 
 // let ControllerUnit = React.createClass({
 //   handleClick:function(e){
@@ -104,8 +103,8 @@ let ImgFigure = React.createClass({
 //   }
 // })
 
-let GalleryByReactApp = React.createClass({
-    Constant:{
+class GalleryByReactApp extends Component{
+    Constant={
       centerPos:{
         left:0,
         right:0
@@ -119,10 +118,10 @@ let GalleryByReactApp = React.createClass({
         topY:[0,0], 
         x:[0,0] 
       },
-    },
+    };
   
     //翻转图片
-    inverse : function(index){
+    inverse(index){
       return function(){
         let imgsArrangeArr = this.state.imgsArrangeArr;
         imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;
@@ -131,12 +130,12 @@ let GalleryByReactApp = React.createClass({
           imgsArrangeArr: imgsArrangeArr
         });
       }.bind(this)
-    },
+    };
     /**
      * 重新布局所有图片
      * 
      */
-    rearrange : function(centerIndex){
+    rearrange(centerIndex){
       let imgsArrangeArr = this.state.imgsArrangeArr,
       Constant = this.Constant,
       centerPos = Constant.centerPos,
@@ -207,15 +206,15 @@ let GalleryByReactApp = React.createClass({
       this.setState({
         imgsArrangeArr:imgsArrangeArr
       });
-    },
+    };
   
     //利用rearrange居中对应index
-    center:function(index){
+    center(index){
       return function(){
         this.rearrange(index);
       }.bind(this);
-    },
-    getInitialState : function(){
+    };
+    getInitialState(){
       return{
         imgsArrangeArr : [
           // {
@@ -229,10 +228,10 @@ let GalleryByReactApp = React.createClass({
         // }
         ]
       };
-    },
+    };
   
     //组件加载以后，为每张图片计算其位置的范围
-    componentDidMount : function(){
+    componentDidMount(){
       //首先拿到舞台的大小
       let stageDOM = ReactDOM.findDOMNode(this.refs.stage),
       stageW = stageDOM.scrollWidth,
@@ -269,8 +268,8 @@ let GalleryByReactApp = React.createClass({
   
       this.rearrange(0);
   
-    },
-    render:function(){
+    };
+    render(){
       let controllerUnits = [],
       imgFigures = [];
       imageDatas.forEach(function(value,index) {
@@ -301,12 +300,12 @@ let GalleryByReactApp = React.createClass({
           </section>
       )
     }
-  })
+  };
 
 
 
   
-  class MenuAppBar extends React.Component {
+  class MenuAppBar extends Component {
     
        
         state = {
